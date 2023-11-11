@@ -15,6 +15,7 @@ public class Bullet extends Role {
     public Bullet(double x, double y, Group group, Direction dir, GameScene gameScene) {
         super(x, y, 0, 0, group, dir, gameScene);
         speed = 10;
+        //子弹方向判断
         if (dir.equals(Direction.up) || dir.equals(Direction.down)) {
             width = 10;
             height = 22;
@@ -22,7 +23,7 @@ public class Bullet extends Role {
             height = 10;
             width = 22;
         }
-
+//坦克 子弹队伍
         if (group.equals(Group.green)) {
             switch (dir) {
                 case up:
@@ -72,10 +73,7 @@ public class Bullet extends Role {
                 x += speed;
                 break;
         }
-
-
-//        if(x > Director.WIDTH - width - 5) x = Director.WIDTH - width - 5;
-//        if(y > Director.HEIGHT - height - 30) y = Director.HEIGHT - height - 30;
+        //越界判断 删除子弹防止内存溢出
         if (x < 0 || y < 0 || x > Director.WIDTH || y > Director.HEIGHT) {
             gameScene.bullets.remove(this);
         }
@@ -92,8 +90,17 @@ public class Bullet extends Role {
         super.paint(graphicsContext);
         move();
     }
-
+//坦克1 碰撞判断 碰撞后
     public boolean impactTank(Tank tank) {
+        if (tank != null && !tank.group.equals(this.group) && getContour().intersects(tank.getContour())) {
+            tank.setAlive(false);
+            alive = false;
+            return true;
+        }
+        return false;
+    }
+    //坦克2碰撞判断
+    public boolean impactTank(Tank2 tank) {
         if (tank != null && !tank.group.equals(this.group) && getContour().intersects(tank.getContour())) {
             tank.setAlive(false);
             alive = false;

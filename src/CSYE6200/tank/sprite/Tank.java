@@ -58,8 +58,8 @@ public class Tank extends Role{
     public void released(KeyCode keyCode) {
         switch (keyCode) {
             case F:
-                openFire();
-                break;
+                if(this.alive) { openFire();
+                break;}
             case UP:
                 keyup = false;
                 break;
@@ -105,7 +105,7 @@ public class Tank extends Role{
         if(dir != Direction.stop) {
             pdir = dir;
         }
-
+// 越界判断 5 和30 是炮管长度
         if(x < 0) x = 0;
         if(y < 0) y = 0;
         if(x > Director.WIDTH - width - 5) x = Director.WIDTH - width - 5;
@@ -128,6 +128,10 @@ public class Tank extends Role{
     @Override
     public void paint(GraphicsContext graphicsContext) {
         if(group.equals(Group.red) && !alive) {
+            gameScene.tanks.remove(this);
+            return;
+        }
+        if(group.equals(Group.green) && !alive) {
             gameScene.tanks.remove(this);
             return;
         }
@@ -173,7 +177,7 @@ public class Tank extends Role{
         SoundEffect.play("/sound/attack.mp3");
         gameScene.bullets.add(new Bullet(bulletx, bullety, group, pdir, gameScene));
     }
-
+//碰撞检测用父父类
     public boolean impact(Sprite sprite) {
         if(sprite != null && !sprite.equals(this) && getContour().intersects(sprite.getContour())) {
             x = oldx;

@@ -4,7 +4,6 @@ import CSYE6200.tank.Director;
 import CSYE6200.tank.sprite.*;
 import CSYE6200.tank.util.Direction;
 import CSYE6200.tank.util.Group;
-import cc.caiguang.tank.sprite.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -29,10 +28,16 @@ public class GameScene {
     private boolean running = false;
 
     private Background background = new Background();
+    //玩家一
     private Tank self = null;
+
+    //玩家二
     private Tank2 self2 = null;
+    //子弹
     public List<Bullet> bullets = new ArrayList<>();
+    //敌军坦克
     public List<Tank> tanks = new ArrayList<>();
+    //爆炸
     public List<Explode> explodes = new ArrayList<>();
     public List<Crate>  crates = new ArrayList<>();
     public List<Rock> rocks = new ArrayList<>();
@@ -41,34 +46,44 @@ public class GameScene {
 
     private void paint() {
         background.paint(graphicsContext);
-        self.paint(graphicsContext);
-        self.impact(tanks);
-        self.impact(crates);
-        self.impact(rocks);
-        self.impact(self2);
-
-        self2.paint(graphicsContext);
-        self2.impact(tanks);
-        self2.impact(crates);
-        self2.impact(rocks);
-        self2.impact(self);
-
+        if (self != null && self.isAlive()) {
+            self.paint(graphicsContext);
+            self.impact(tanks);
+            self.impact(crates);
+            self.impact(rocks);
+            if (self2 != null && self2.isAlive())
+                self.impact(self2);
+        }
+        if (self2 != null && self2.isAlive()) {
+            self2.paint(graphicsContext);
+            self2.impact(tanks);
+            self2.impact(crates);
+            self2.impact(rocks);
+            if (self != null && self.isAlive())
+                self2.impact(self);
+        }
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
             b.paint(graphicsContext);
             b.impactCrates(crates);
             b.impactTank(tanks);
             b.impactRocks(rocks);
-            b.impactTank(self);
+            if (self != null && self.isAlive())
+                b.impactTank(self);
+            if (self2 != null && self2.isAlive())
+                b.impactTank(self2);
         }
 
         for (int i = 0; i < tanks.size(); i++) {
             Tank tank = tanks.get(i);
             tank.paint(graphicsContext);
             tank.impact(crates);
+            if (self != null && self.isAlive())
             tank.impact(self);
             tank.impact(rocks);
             tank.impact(tanks);
+            if (self2 != null && self2.isAlive())
+                tank.impact(self2);
         }
 
         for (int i = 0; i < explodes.size(); i++) {

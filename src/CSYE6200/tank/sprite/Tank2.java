@@ -58,8 +58,9 @@ public class Tank2 extends Role{
     public void released(KeyCode keyCode) {
         switch (keyCode) {
             case J:
+                if(this.alive){
                 openFire();
-                break;
+                break;}
             case W:
                 keyup = false;
                 break;
@@ -110,24 +111,15 @@ public class Tank2 extends Role{
         if(y < 0) y = 0;
         if(x > Director.WIDTH - width - 5) x = Director.WIDTH - width - 5;
         if(y > Director.HEIGHT - height - 30) y = Director.HEIGHT - height - 30;
-
-        if(group.equals(Group.red)) {
-            int i = random.nextInt(60);
-            switch (i) {
-                case 15:
-                    Direction d[] = Direction.values();
-                    dir = d[random.nextInt(d.length)];
-                    break;
-                case 30:
-                    openFire();
-                    break;
-            }
-        }
     }
 
     @Override
     public void paint(GraphicsContext graphicsContext) {
         if(group.equals(Group.red) && !alive) {
+            gameScene.tanks.remove(this);
+            return;
+        }
+        if(group.equals(Group.green) && !alive) {
             gameScene.tanks.remove(this);
             return;
         }
