@@ -157,7 +157,7 @@ public class GameScene {
         for (int i = 0; i < 8; i++) {
             Crate crate1 = new Crate(0 , 0+32*i );
             Crate crate2 = new Crate(31 , 0+32*i );
-            Crate crate3 = new Crate(914 , 0+32*i );
+            Crate crate3 = new Crate(914, 0+32*i );
             Crate crate4 = new Crate(883 , 0+32*i );
 
             Crate crate5 = new Crate(0 , 352+32*i );
