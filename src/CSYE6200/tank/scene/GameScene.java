@@ -111,25 +111,97 @@ public class GameScene {
         graphicsContext.fillText("敌军的数量：" + tanks.size(), 800, 60);
         graphicsContext.fillText("子弹的数量：" + bullets.size(), 800, 90);
 
-        if(!self.isAlive()&&!self2.isAlive()) {
+        if(!self.isAlive()){
+            Director.getInstance().gameOver(false);
+        }
+        if(!self2.isAlive()) {
             Director.getInstance().gameOver(false);
         } else if(tanks.isEmpty()) {
             Director.getInstance().gameOver(true);
         }
     }
 
-    public void init(Stage stage) {
+    public void init(Stage stage,int level) {
         AnchorPane root = new AnchorPane(canvas);
+        //first choice to change the level
+//        Button nextLevelButton = new Button("Next Level");
+//        nextLevelButton.setLayoutX(50); // Set X position
+//        nextLevelButton.setLayoutY(50); // Set Y position
+//        root.getChildren().add(nextLevelButton);
         stage.getScene().setRoot(root);
         stage.getScene().setOnKeyReleased(keyProcess);
         stage.getScene().setOnKeyPressed(keyProcess);
         running = true;
         self = new Tank(800, 530, Group.green, Direction.stop, Direction.up, this);
         self2 = new Tank2(100, 530, Group.green, Direction.stop, Direction.up, this);
-        initSprite();
+        if(level==1)
+            initSprite();
+        else if(level==2)
+            initSprite2();
+        else if(level==3){
+            self2 = new Tank2(100, 530, Group.red, Direction.stop, Direction.up, this);
+            initSprite3();
+        }
         refresh.start();
     }
+//map3 draws
+    private void initSprite3() {
+        for (int i = 0; i < 1; i++) {
+            Tank tank = new Tank(421, 280,Group.green, Direction.stop, Direction.down, this);
+            tanks.add(tank);
+        }
+        for (int i = 0; i < 7; i++) {
+            Crate crate1 = new Crate(200,300+i*32);
+            Crate crate2 = new Crate(231,300+i*32);
+            Crate crate3 = new Crate(708,300+i*32);
+            Crate crate4 = new Crate(739,300+i*32);
+            crates.add(crate1);
+            crates.add(crate2);
+            crates.add(crate3);
+            crates.add(crate4);
+        }
+        for (int i = 0; i < 8; i++) {
+            Crate crate1 = new Crate(0 , 0+32*i );
+            Crate crate2 = new Crate(31 , 0+32*i );
+            Crate crate3 = new Crate(914, 0+32*i );
+            Crate crate4 = new Crate(883 , 0+32*i );
 
+            Crate crate5 = new Crate(0 , 352+32*i );
+            Crate crate6 = new Crate(31 , 352+32*i );
+            Crate crate7 = new Crate(914 , 352+32*i );
+            Crate crate8 = new Crate(883 , 352+32*i );
+            crates.add(crate1);
+            crates.add(crate2);
+            crates.add(crate3);
+            crates.add(crate4);
+            crates.add(crate5);
+            crates.add(crate6);
+            crates.add(crate7);
+            crates.add(crate8);
+
+
+        }
+
+        for (int i = 0; i < 4; i++) {
+            Rock rock = new Rock(350 , 278);
+            Rock rock2 = new Rock(480 , 278);
+            Rock rock3 = new Rock(420 , 218);
+            Rock rock4 = new Rock(420 , 338);
+            rocks.add(rock);
+            rocks.add(rock2);
+            rocks.add(rock3);
+            rocks.add(rock4);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            Tree tree = new Tree(350 + i * 86, 380);
+            trees.add(tree);
+            Tree tree2 = new Tree(350 + i * 86, 456);
+            trees.add(tree2);
+        }
+    }
+
+    //map1 draw setting
     private void initSprite() {
         for (int i = 0; i < 6; i++) {
             Tank tank = new Tank(200 + i * 80, 30,Group.red, Direction.stop, Direction.down, this);
@@ -193,6 +265,39 @@ public class GameScene {
             trees.add(tree2);
         }
     }
+//map2 draw setting
+    private void initSprite2() {
+        for (int i = 0; i < 6; i++) {
+            Tank tank = new Tank(30 + i * 150, 50 + (i % 2) * 40, Group.red, Direction.stop, Direction.down, this);
+            tanks.add(tank);
+        }
+
+// Adding Crates in complex patterns
+        for (int i = 0; i < 12; i++) {
+            Crate crate = new Crate(50 + i * 75, 200 + (i % 3) * 45);
+            crates.add(crate);
+        }
+        for (int i = 0; i < 10; i++) {
+            Crate crate = new Crate(450 + (i % 4) * 50, 120 + i * 40);
+            crates.add(crate);
+        }
+
+// Placing Rocks in irregular formations
+        for (int i = 0; i < 8; i++) {
+            Rock rock = new Rock(150 + i * 100, 350 + (i % 5) * 35);
+            rocks.add(rock);
+        }
+
+// Adding Trees in non-linear arrangements
+        for (int i = 0; i < 6; i++) {
+            Tree tree = new Tree(550 + (i % 3) * 70, 400 + i * 45);
+            trees.add(tree);
+        }
+        for (int i = 0; i < 5; i++) {
+            Tree tree = new Tree(700 + i * 50, 500 + (i % 2) * 40);
+            trees.add(tree);
+        }
+    }
 
     public void clear(Stage stage) {
 
@@ -211,7 +316,6 @@ public class GameScene {
 
 
     private class Refresh extends AnimationTimer {
-
         @Override
         public void handle(long now) {
             if(running) {
@@ -220,11 +324,9 @@ public class GameScene {
         }
     }
     private class KeyProcess implements EventHandler<KeyEvent> {
-
         @Override
         public void handle(KeyEvent event) {
             KeyCode keyCode = event.getCode();
-
 
             if(event.getEventType() == KeyEvent.KEY_RELEASED) {
                 if(keyCode.equals(KeyCode.SPACE)) {

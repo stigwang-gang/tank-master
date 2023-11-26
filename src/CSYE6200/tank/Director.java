@@ -48,7 +48,7 @@ public class Director {
         GameOver.load(stage, success);
     }
 
-    public void gameStart() {
-        gameScene.init(stage);
+    public void gameStart(int level) {
+        gameScene.init(stage,level);
     }
 }

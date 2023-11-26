@@ -4,8 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CSYE6200.tank.controller.IndexController">
+<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CSYE6200.tank.controller.IndexController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,11 +16,19 @@
             <Image url="@../image/logo.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startGame" fitHeight="117.0" fitWidth="376.0" layoutX="292.0" layoutY="391.0"
-                 onMouseClicked="#mouseClickedStartGame" onMouseEntered="#mouseEnteredStartGame"
-                 onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startGame" fitHeight="117.0" fitWidth="376.0" layoutX="100.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame1" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/StartGameButton.png" />
+            <Image url="@../image/level1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="startGame1" fitHeight="117.0" fitWidth="376.0" layoutX="391.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame2" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/level2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="startGame2" fitHeight="117.0" fitWidth="376.0" layoutX="679.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame3" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/pvp.png" />
          </image>
       </ImageView>
    </children>
