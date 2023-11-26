@@ -150,16 +150,41 @@ public class GameScene {
             Tank tank = new Tank(421, 280,Group.green, Direction.stop, Direction.down, this);
             tanks.add(tank);
         }
-        for (int i = 0; i < 7; i++) {
-            Crate crate1 = new Crate(200,300+i*32);
-            Crate crate2 = new Crate(231,300+i*32);
-            Crate crate3 = new Crate(708,300+i*32);
-            Crate crate4 = new Crate(739,300+i*32);
+        for (int i = 0; i < 4; i++) {
+            Rock rock = new Rock(350-65*i, 278);
+            Rock rock2 = new Rock(632+65*i, 278);
+            rocks.add(rock);
+            rocks.add(rock2);
+        }
+        for (int i = 0; i < 5; i++) {
+            //down
+            Crate crate1 = new Crate(321 , 400+32*i );
+            Crate crate2 = new Crate(321+31 , 400+32*i );
+            Crate crate3 = new Crate(538 , 400+32*i );
+            Crate crate4 = new Crate(538+31 , 400+32*i );
+            Crate crate5 = new Crate(383+i*31 , 460 );
+            Crate crate6 = new Crate(383+i*31 , 492 );
             crates.add(crate1);
             crates.add(crate2);
             crates.add(crate3);
             crates.add(crate4);
+            crates.add(crate5);
+            crates.add(crate6);
+            //up
+            Crate crate7 = new Crate(321 , 32+32*i );
+            Crate crate8 = new Crate(321+31 , 32+32*i );
+            Crate crate9 = new Crate(538 , 32+32*i );
+            Crate crate10 = new Crate(538+31 , 32+32*i );
+            Crate crate11 = new Crate(383+i*31 , 92 );
+            Crate crate12 = new Crate(383+i*31 , 92 );
+            crates.add(crate7);
+            crates.add(crate8);
+            crates.add(crate9);
+            crates.add(crate10);
+            crates.add(crate11);
+            crates.add(crate12);
         }
+
         for (int i = 0; i < 8; i++) {
             Crate crate1 = new Crate(0 , 0+32*i );
             Crate crate2 = new Crate(31 , 0+32*i );
@@ -184,7 +209,7 @@ public class GameScene {
 
         for (int i = 0; i < 4; i++) {
             Rock rock = new Rock(350 , 278);
-            Rock rock2 = new Rock(480 , 278);
+            Rock rock2 = new Rock(482 , 278);
             Rock rock3 = new Rock(420 , 218);
             Rock rock4 = new Rock(420 , 338);
             rocks.add(rock);
@@ -193,10 +218,10 @@ public class GameScene {
             rocks.add(rock4);
         }
 
-        for (int i = 0; i < 3; i++) {
-            Tree tree = new Tree(350 + i * 86, 380);
+        for (int i = 0; i < 2; i++) {
+            Tree tree = new Tree(0 + i * 75, 270);
             trees.add(tree);
-            Tree tree2 = new Tree(350 + i * 86, 456);
+            Tree tree2 = new Tree(480 + i * 75, 270);
             trees.add(tree2);
         }
     }
@@ -268,33 +293,89 @@ public class GameScene {
 //map2 draw setting
     private void initSprite2() {
         for (int i = 0; i < 6; i++) {
-            Tank tank = new Tank(30 + i * 150, 50 + (i % 2) * 40, Group.red, Direction.stop, Direction.down, this);
+            Tank tank = new Tank(200 + i * 80, 30,Group.red, Direction.stop, Direction.down, this);
             tanks.add(tank);
         }
 
 // Adding Crates in complex patterns
-        for (int i = 0; i < 12; i++) {
-            Crate crate = new Crate(50 + i * 75, 200 + (i % 3) * 45);
+        for (int i = 0; i < 4; i++) {
+            //C
+            Crate crate = new Crate(30+31*i+31*4, 60+64);
+            Crate crate1=new Crate(30+31*i+31*4,188+64);
+            Crate crate2=new Crate(30+31*4,60+i*32+64);
+            Crate crate3=new Crate(30+31*4,60+3*32+64);
             crates.add(crate);
-        }
-        for (int i = 0; i < 10; i++) {
-            Crate crate = new Crate(450 + (i % 4) * 50, 120 + i * 40);
-            crates.add(crate);
+            crates.add(crate1);
+            crates.add(crate2);
+            crates.add(crate3);
+            //S
+            if(i==3)crates.add(new Crate(214+31*(i-1)+31*4, 60+64)) ;
+            else {
+                crates.add(new Crate(214+31*i+31*4, 60+64));
+                crates.add(new Crate(214+31*i+31*4,188+64));
+            }
+            Crate crate6 = new Crate(214+31*4, 92+64);
+            Crate crate7 = new Crate(214+31+31*4, 124+64);
+            Crate crate8 = new Crate(214+31*2+31*4, 156+64);
+            crates.add(crate6);
+            crates.add(crate7);
+            crates.add(crate8);
+            //Y
+           crates.add(new Crate(369+31*4,60+64));
+            crates.add(new Crate(369+31*4+31*4,60+64));
+            crates.add(new Crate(369+31+31*4,92+64));
+            crates.add(new Crate(369+31*3+31*4,92+64));
+            crates.add(new Crate(369+2*31+31*4,124+64));
+            crates.add(new Crate(369+2*31+31*4,156+64));
+            crates.add(new Crate(369+2*31+31*4,188+64));
+            //E
+            crates.add(new Crate(555+31*i+31*4, 60+64));
+            crates.add(new Crate(555+31*i+31*4,188+64));
+            crates.add(new Crate(555+31*i+31*4,60+64+64));
+            crates.add(new Crate(555+31*4,60+i*32+64));
+            crates.add(new Crate(555+31*4,60+3*32+64));
+
+            //6
+            crates.add(new Crate(30+31*i+31*4, 320+64));
+            crates.add(new Crate(30+31*i+31*4,448+64));
+            crates.add(new Crate(30+31*i+31*4,320+64+64));
+            crates.add(new Crate(30+31*4,320+i*32+64));
+            crates.add(new Crate(30+31*4,320+3*32+64));
+            crates.add(new Crate(30+31*4+31*3,320+3*32+64));
+            //2
+            if(i==3)crates.add(new Crate(214+31*(i-1)+31*4, 320+64));
+            else  {
+                crates.add(new Crate(214+31*i+31*4, 320+64));
+                crates.add(new Crate(214+31*i+31*4,188+64+260));
+            }
+            crates.add(new Crate(214+31*2+31*4, 92+64+260));
+            crates.add(new Crate(214+31+31*4, 124+64+260));
+            crates.add(new Crate(214+31*4, 156+64+260));
+            //0
+            crates.add(new Crate(369+31*i+31*4, 320+64));
+            crates.add(new Crate(369+31*i+31*4,448+64));
+            crates.add(new Crate(369+31*4,320+i*32+64));
+            crates.add(new Crate(369+31*4,320+3*32+64));
+            crates.add(new Crate(369+31*7,320+i*32+64));
+            crates.add(new Crate(369+31*7,320+3*32+64));
+            //0
+            crates.add(new Crate(555+31*i+31*4, 320+64));
+            crates.add(new Crate(555+31*i+31*4,448+64));
+            crates.add(new Crate(555+31*4,320+i*32+64));
+            crates.add(new Crate(555+31*4,320+3*32+64));
+            crates.add(new Crate(555+31*7,320+i*32+64));
+            crates.add(new Crate(555+31*7,320+3*32+64));
         }
 
 // Placing Rocks in irregular formations
-        for (int i = 0; i < 8; i++) {
-            Rock rock = new Rock(150 + i * 100, 350 + (i % 5) * 35);
-            rocks.add(rock);
-        }
+//        for (int i = 0; i < 8; i++) {
+//            Rock rock = new Rock(150 + i * 100, 350 + (i % 5) * 35);
+//            rocks.add(rock);
+//        }
 
-// Adding Trees in non-linear arrangements
-        for (int i = 0; i < 6; i++) {
-            Tree tree = new Tree(550 + (i % 3) * 70, 400 + i * 45);
-            trees.add(tree);
-        }
-        for (int i = 0; i < 5; i++) {
-            Tree tree = new Tree(700 + i * 50, 500 + (i % 2) * 40);
+        //add tree
+        for (int i = 0; i < 11; i++) {
+            Tree tree = new Tree(30 + i * 80, 280 );
             trees.add(tree);
         }
     }
