@@ -8,7 +8,6 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         Director.getInstance().init(primaryStage);
     }
-
     public static void main(String[] args) {
         Application.launch(args);
     }

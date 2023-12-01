@@ -34,7 +34,7 @@ public class OverController {
     }
 
     public void flagSuccess() {
-        flag.setImage(new Image("image/success.png"));
+        flag.setImage(new Image("image/win.png"));
     }
 
 }

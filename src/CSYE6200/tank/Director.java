@@ -42,7 +42,7 @@ public class Director {
     }
 
     public void gameOver(boolean success) {
-        String sound = success? "/sound/success.wav" : "/sound/aiyouwodemaya.mp3";
+        String sound = success? "/sound/success.m4a" : "/sound/failure.m4a";
         SoundEffect.play(sound);
         gameScene.clear(stage);
         GameOver.load(stage, success);

@@ -203,8 +203,6 @@ public class GameScene {
             crates.add(crate6);
             crates.add(crate7);
             crates.add(crate8);
-
-
         }
 
         for (int i = 0; i < 4; i++) {
@@ -334,7 +332,6 @@ public class GameScene {
             crates.add(new Crate(555+31*i+31*4,60+64+64));
             crates.add(new Crate(555+31*4,60+i*32+64));
             crates.add(new Crate(555+31*4,60+3*32+64));
-
             //6
             crates.add(new Crate(30+31*i+31*4, 320+64));
             crates.add(new Crate(30+31*i+31*4,448+64));

@@ -21,12 +21,12 @@
             <Image url="@../image/level1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startGame1" fitHeight="117.0" fitWidth="376.0" layoutX="391.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame2" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startGame1" fitHeight="117.0" fitWidth="376.0" layoutX="391.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame2" onMouseEntered="#mouseEnteredStartGame2" onMouseExited="#mouseExitedStartGame2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/level2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startGame2" fitHeight="117.0" fitWidth="376.0" layoutX="679.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame3" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startGame2" fitHeight="117.0" fitWidth="376.0" layoutX="679.0" layoutY="401.0" onMouseClicked="#mouseClickedStartGame3" onMouseEntered="#mouseEnteredStartGame3" onMouseExited="#mouseExitedStartGame3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/pvp.png" />
          </image>
